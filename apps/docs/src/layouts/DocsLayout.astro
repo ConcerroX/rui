@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro"
 import type { CollectionEntry } from "astro:content"
-import { getDefaultSection, getModeUrl, getReadingMode, groupDocs } from "../lib/docs"
+import { getModeUrl, getReadingMode, getTabsForDoc, groupDocs } from "../lib/docs"
 
 export interface Props {
     entry: CollectionEntry<"docs">
@@ -11,9 +11,9 @@ export interface Props {
 
 const { entry, locale, allDocs } = Astro.props
 const mode = getReadingMode(Astro.url)
-const defaultSection = getDefaultSection(entry, mode)
 const groupedDocs = groupDocs(allDocs, locale, mode)
-const defaultSectionJson = JSON.stringify(defaultSection)
+const tabs = getTabsForDoc(allDocs, locale, entry.data.docSlug)
+const outline = entry.data.outline ?? []
 ---
 
 <BaseLayout title={entry.data.title} locale={locale} currentUrl={Astro.url} sectionLabel="Components">
@@ -65,14 +65,6 @@ const defaultSectionJson = JSON.stringify(defaultSection)
             margin-top: 1rem;
         }
 
-        .docs-body section {
-            display: none;
-        }
-
-        .docs-body section.is-active {
-            display: block;
-        }
-
         .docs-outline ul {
             list-style: none;
             padding-left: 0;
@@ -106,7 +98,7 @@ const defaultSectionJson = JSON.stringify(defaultSection)
                         <ol>
                             {items.map((item) => (
                                 <li>
-                                    <a href={`/${locale}/docs/${item.data.routeSlug}`}>{item.data.title}</a>
+                                    <a href={`/${locale}/docs/${item.data.docSlug}/${item.data.tab}`}>{item.data.title}</a>
                                 </li>
                             ))}
                         </ol>
@@ -127,10 +119,13 @@ const defaultSectionJson = JSON.stringify(defaultSection)
                 </nav>
                 <nav class="docs-tabs" aria-label="Page sections">
                     <ul>
-                        {entry.data.sections.map((section) => (
+                        {tabs.map((tabEntry) => (
                             <li>
-                                <a href={`?mode=${mode}&section=${section}`} aria-current={section === defaultSection ? "page" : undefined}>
-                                    {section}
+                                <a
+                                    href={`/${locale}/docs/${tabEntry.data.docSlug}/${tabEntry.data.tab}?mode=${mode}`}
+                                    aria-current={tabEntry.data.tab === entry.data.tab ? "page" : undefined}
+                                >
+                                    {tabEntry.data.tab}
                                 </a>
                             </li>
                         ))}
@@ -149,23 +144,19 @@ const defaultSectionJson = JSON.stringify(defaultSection)
         <aside class="docs-outline">
             <nav aria-label="Current section outline">
                 <h2>On this page</h2>
+                <h3>{entry.data.tab}</h3>
                 <ul>
-                    {entry.data.sections.map((section) => (
-                        <li>
-                            <a href={`#${section}`}>{section}</a>
-                        </li>
-                    ))}
+                    {outline.length > 0 ? (
+                        outline.map((item) => (
+                            <li>
+                                <a href={`#${item.id}`}>{item.label}</a>
+                            </li>
+                        ))
+                    ) : (
+                        <li>No subsection headings yet.</li>
+                    )}
                 </ul>
             </nav>
         </aside>
     </div>
-
-    <script define:vars={{ defaultSectionJson }}>
-        const current = new URL(window.location.href)
-        const section = current.searchParams.get("section") ?? JSON.parse(defaultSectionJson)
-        const sections = document.querySelectorAll(".docs-body section")
-        sections.forEach((node) => {
-            node.classList.toggle("is-active", node.id === section)
-        })
-    </script>
 </BaseLayout>

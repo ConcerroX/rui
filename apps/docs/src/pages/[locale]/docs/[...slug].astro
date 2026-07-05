@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from "astro:content"
 import DocsLayout from "../../../layouts/DocsLayout.astro"
-import { isLocale } from "../../../lib/docs"
+import { isDocTab, isLocale } from "../../../lib/docs"
 
 export async function getStaticPaths() {
     const docs = await getCollection("docs")
@@ -9,17 +9,25 @@ export async function getStaticPaths() {
     return docs.map((entry) => ({
         params: {
             locale: entry.data.locale,
-            slug: entry.data.routeSlug,
+            slug: `${entry.data.docSlug}/${entry.data.tab}`,
         },
         props: { entry },
     }))
 }
 
-const { locale } = Astro.params
+const { locale, slug } = Astro.params
 const { entry } = Astro.props
 
 if (!locale || !isLocale(locale)) {
     throw new Error("Invalid locale")
+}
+
+const slugValue = Array.isArray(slug) ? slug.join("/") : slug ?? ""
+const segments = slugValue.split("/")
+const tab = segments[segments.length - 1]
+
+if (!isDocTab(tab)) {
+    throw new Error("Invalid docs tab")
 }
 
 const allDocs = await getCollection("docs")

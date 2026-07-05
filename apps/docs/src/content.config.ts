@@ -2,7 +2,11 @@ import { defineCollection, z } from "astro:content"
 import { glob } from "astro/loaders"
 
 const localeSchema = z.enum(["en", "zh-cn"])
-const sectionSchema = z.enum(["specs", "guidelines", "implementation"])
+const tabSchema = z.enum(["spec", "guidelines", "implementation"])
+const outlineItemSchema = z.object({
+    id: z.string(),
+    label: z.string(),
+})
 
 const docs = defineCollection({
     loader: glob({
@@ -11,15 +15,12 @@ const docs = defineCollection({
     }),
     schema: z.object({
         title: z.string(),
-        routeSlug: z.string(),
+        docSlug: z.string(),
+        tab: tabSchema,
         locale: localeSchema,
         designOrder: z.number(),
         developOrder: z.number(),
-        defaultTab: z.object({
-            design: sectionSchema,
-            develop: sectionSchema,
-        }),
-        sections: z.array(sectionSchema).nonempty(),
+        outline: z.array(outlineItemSchema).optional(),
         api: z.string(),
     }),
 })
