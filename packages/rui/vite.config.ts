@@ -8,7 +8,7 @@ export default defineConfig({
     plugins: [
         vue(),
         dts({
-            insertTypesEntry: true,
+            entryRoot: "src",
             outDirs: ["./dist"],
             tsconfigPath: "./tsconfig.json",
         }),
@@ -20,9 +20,11 @@ export default defineConfig({
     },
     build: {
         lib: {
-            entry: fileURLToPath(new URL("./src/index.ts", import.meta.url)),
+            entry: {
+                index: fileURLToPath(new URL("./src/index.ts", import.meta.url)),
+                "components/index": fileURLToPath(new URL("./src/components/index.ts", import.meta.url)),
+            },
             formats: ["es"],
-            fileName: "index",
         },
         rolldownOptions: {
             external: ["vue"],

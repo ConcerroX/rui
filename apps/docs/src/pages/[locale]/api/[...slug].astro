@@ -1,0 +1,31 @@
+---
+import { getCollection, render } from "astro:content"
+import ApiLayout from "../../../layouts/ApiLayout.astro"
+import { isLocale } from "../../../lib/docs"
+
+export async function getStaticPaths() {
+    const apiEntries = await getCollection("api")
+
+    return apiEntries.map((entry) => ({
+        params: {
+            locale: entry.data.locale,
+            slug: entry.data.routeSlug,
+        },
+        props: { entry },
+    }))
+}
+
+const { locale } = Astro.params
+const { entry } = Astro.props
+
+if (!locale || !isLocale(locale)) {
+    throw new Error("Invalid locale")
+}
+
+const allApi = await getCollection("api")
+const { Content } = await render(entry)
+---
+
+<ApiLayout entry={entry} locale={locale} allApi={allApi}>
+    <Content />
+</ApiLayout>

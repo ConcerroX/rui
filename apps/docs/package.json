@@ -12,6 +12,6 @@
         "@astrojs/vue": "^7.0.1",
         "astro": "^7.0.6",
         "rui": "workspace:*",
-        "vue": "workspace:*"
+        "vue": "catalog:"
     }
 }

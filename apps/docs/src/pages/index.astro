@@ -1,18 +1,19 @@
 ---
-import { Btn } from "rui"
+import { locales } from "../lib/docs"
+import BaseLayout from "../layouts/BaseLayout.astro"
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<Btn client:load />
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="RUI Docs" locale="en">
+    <article>
+        <header>
+            <h1>RUI Documentation</h1>
+            <p>Select a language to continue.</p>
+        </header>
+        <nav aria-label="Available languages">
+            <ul>
+                <li><a href="/en/docs/getting-started">English components docs</a></li>
+                <li><a href="/zh-cn/docs/getting-started">简体中文组件文档</a></li>
+            </ul>
+        </nav>
+    </article>
+</BaseLayout>

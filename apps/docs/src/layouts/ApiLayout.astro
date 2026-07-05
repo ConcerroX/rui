@@ -1,0 +1,121 @@
+---
+import BaseLayout from "./BaseLayout.astro"
+import type { CollectionEntry } from "astro:content"
+import { getModeUrl, getReadingMode, groupApi } from "../lib/docs"
+
+export interface Props {
+    entry: CollectionEntry<"api">
+    locale: string
+    allApi: CollectionEntry<"api">[]
+}
+
+const { entry, locale, allApi } = Astro.props
+const mode = getReadingMode(Astro.url)
+const apiEntries = groupApi(allApi, locale, mode)
+---
+
+<BaseLayout title={entry.data.title} locale={locale} currentUrl={Astro.url} sectionLabel="Components">
+    <style>
+        .api-shell {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .api-sidebar,
+        .api-content,
+        .api-outline {
+            border: 1px solid #d0d0d0;
+            padding: 1rem;
+        }
+
+        .api-sidebar ol,
+        .api-outline ul {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+
+        .api-mode ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .api-mode,
+        .api-links {
+            margin-top: 1rem;
+        }
+
+        .api-content h1 {
+            margin-top: 0;
+        }
+
+        .api-outline ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .api-outline li + li {
+            margin-top: 0.5rem;
+        }
+
+        @media (min-width: 900px) {
+            .api-shell {
+                grid-template-columns: 16rem minmax(0, 1fr) 14rem;
+                align-items: start;
+            }
+
+            .api-sidebar,
+            .api-outline {
+                position: sticky;
+                top: 1rem;
+            }
+        }
+    </style>
+
+    <div class="api-shell">
+        <aside class="api-sidebar">
+            <nav aria-label="API navigation">
+                <h2>API</h2>
+                <ol>
+                    {apiEntries.map((item) => (
+                        <li>
+                            <a href={`/${locale}/api/${item.data.routeSlug}`}>{item.data.title}</a>
+                        </li>
+                    ))}
+                </ol>
+            </nav>
+        </aside>
+
+        <article class="api-content">
+            <header>
+                <h1>{entry.data.title}</h1>
+                <p>Current reading mode: {mode}</p>
+                <nav class="api-mode" aria-label="Reading mode">
+                    <ul>
+                        <li><a href={getModeUrl(Astro.url, "design")} aria-current={mode === "design" ? "true" : undefined}>Design</a></li>
+                        <li><a href={getModeUrl(Astro.url, "develop")} aria-current={mode === "develop" ? "true" : undefined}>Develop</a></li>
+                    </ul>
+                </nav>
+                <p class="api-links">
+                    <a href={entry.data.docs}>Back to docs</a>
+                </p>
+            </header>
+            <div>
+                <slot />
+            </div>
+        </article>
+
+        <aside class="api-outline">
+            <nav aria-label="API page context">
+                <h2>Context</h2>
+                <ul>
+                    <li><a href={entry.data.docs}>Docs page</a></li>
+                    <li><a href={`/${locale}/api/${entry.data.routeSlug}`}>Current API</a></li>
+                </ul>
+            </nav>
+        </aside>
+    </div>
+</BaseLayout>

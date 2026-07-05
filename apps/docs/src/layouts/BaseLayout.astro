@@ -1,0 +1,108 @@
+---
+import { getLocaleUrl, locales } from "../lib/docs"
+
+export interface Props {
+    title: string
+    locale: string
+    currentUrl?: URL
+    sectionLabel?: string
+}
+
+const { title, locale, currentUrl = Astro.url, sectionLabel = "Components" } = Astro.props
+---
+
+<!doctype html>
+<html lang={locale}>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>{title}</title>
+        <style>
+            :root {
+                color-scheme: light;
+                font-family: Arial, sans-serif;
+                line-height: 1.5;
+            }
+
+            body {
+                margin: 0;
+            }
+
+            a {
+                color: inherit;
+            }
+
+            .site-header {
+                border-bottom: 1px solid #d0d0d0;
+                padding: 1rem;
+            }
+
+            .site-header__inner {
+                display: grid;
+                gap: 1rem;
+                align-items: start;
+            }
+
+            .site-title {
+                margin: 0;
+                font-size: 1.25rem;
+            }
+
+            .header-nav,
+            .header-tools {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .header-nav ul,
+            .header-tools ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .page-shell {
+                width: min(1200px, 100% - 2rem);
+                margin: 0 auto;
+                padding: 1rem 0 2rem;
+            }
+
+            @media (min-width: 900px) {
+                .site-header__inner {
+                    grid-template-columns: 1fr auto auto;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="site-header__inner">
+                <p class="site-title">RUI Docs</p>
+                <nav class="header-nav" aria-label="Primary">
+                    <ul>
+                        <li><a href={`/${locale}/docs/getting-started`}>{sectionLabel}</a></li>
+                        <li><a href={`/${locale}/api/text-field`}>API</a></li>
+                    </ul>
+                </nav>
+                <nav class="header-tools" aria-label="Language switcher">
+                    <ul>
+                        {locales.map((item) => (
+                            <li>
+                                <a href={getLocaleUrl(currentUrl, item)} aria-current={item === locale ? "true" : undefined}>
+                                    {item}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main class="page-shell">
+            <slot />
+        </main>
+    </body>
+</html>

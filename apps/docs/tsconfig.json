@@ -1,5 +1,18 @@
 {
     "extends": "astro/tsconfigs/strict",
     "include": [".astro/types.d.ts", "**/*"],
-    "exclude": ["dist"]
+    "exclude": ["dist"],
+    "compilerOptions": {
+        "paths": {
+            "rui/components": ["../../packages/rui/src/components/index.ts"],
+            "rui/components/*": ["../../packages/rui/src/components/*"]
+        },
+        "plugins": [
+            {
+                "name": "@vue/typescript-plugin",
+                "location": "node_modules/@vue/language-server",
+                "languages": ["vue"]
+            }
+        ]
+    }
 }

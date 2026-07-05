@@ -1,1 +1,2 @@
-export { default as Btn } from "./components/RuiBtn.vue"
+// Root package entry reserved for non-component APIs.
+export {}
