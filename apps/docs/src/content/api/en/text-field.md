@@ -2,7 +2,7 @@
 title: Text Field API
 routeSlug: text-field
 locale: en
-docs: /en/docs/getting-started
+docs: /en/components/text-field/spec
 designOrder: 100
 developOrder: 20
 ---

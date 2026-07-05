@@ -2,9 +2,15 @@
 import { getCollection, render } from "astro:content"
 import ApiLayout from "../../../layouts/ApiLayout.astro"
 import { isLocale } from "../../../lib/docs"
+import { validateApiLocales, validateCrossLinks, validateDocsLocales } from "../../../lib/validate-content"
 
 export async function getStaticPaths() {
     const apiEntries = await getCollection("api")
+    const docs = await getCollection("docs")
+
+    validateDocsLocales(docs)
+    validateApiLocales(apiEntries)
+    validateCrossLinks(docs, apiEntries)
 
     return apiEntries.map((entry) => ({
         params: {

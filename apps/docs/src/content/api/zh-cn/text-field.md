@@ -2,7 +2,7 @@
 title: Text Field API
 routeSlug: text-field
 locale: zh-cn
-docs: /zh-cn/docs/getting-started
+docs: /zh-cn/components/text-field/spec
 designOrder: 100
 developOrder: 20
 ---

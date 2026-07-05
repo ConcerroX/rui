@@ -98,7 +98,7 @@ const outline = entry.data.outline ?? []
                         <ol>
                             {items.map((item) => (
                                 <li>
-                                    <a href={`/${locale}/docs/${item.data.docSlug}/${item.data.tab}`}>{item.data.title}</a>
+                                    <a href={`/${locale}/${item.data.docSlug}/${item.data.tab}`}>{item.data.title}</a>
                                 </li>
                             ))}
                         </ol>
@@ -122,7 +122,7 @@ const outline = entry.data.outline ?? []
                         {tabs.map((tabEntry) => (
                             <li>
                                 <a
-                                    href={`/${locale}/docs/${tabEntry.data.docSlug}/${tabEntry.data.tab}?mode=${mode}`}
+                                    href={`/${locale}/${tabEntry.data.docSlug}/${tabEntry.data.tab}?mode=${mode}`}
                                     aria-current={tabEntry.data.tab === entry.data.tab ? "page" : undefined}
                                 >
                                     {tabEntry.data.tab}
