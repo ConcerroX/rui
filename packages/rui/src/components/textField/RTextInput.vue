@@ -1,14 +1,20 @@
 <script setup lang="ts">
-import type { RTextFieldBaseProps } from "./types.ts"
+import { ref } from "vue"
 
-withDefaults(defineProps<RTextFieldBaseProps>(), {
+import type { RTextInputProps } from "./types.ts"
+
+withDefaults(defineProps<RTextInputProps>(), {
     textArea: false,
 })
+
+const model = defineModel<string>()
+
+const textAreaRef = ref<HTMLTextAreaElement | null>(null)
 </script>
 
 <template>
-    <input v-if="!textArea" class="rui-text-input" />
-    <textarea v-else class="rui-text-input" />
+    <input v-if="!textArea" class="rui-text-input" v-model="model" />
+    <textarea v-else class="rui-text-input" v-model="model" ref="textAreaRef" />
 </template>
 
 <style scoped lang="scss">
@@ -18,10 +24,12 @@ withDefaults(defineProps<RTextFieldBaseProps>(), {
 @use "@/styles/mixin";
 
 .rui-text-input {
-    --rui-comp-text-highlight-color: mixin.alpha(color.$primary, 40%);
+    /* TODO: declare a global var */
+    --rui-comp-text-highlight-color: #{mixin.alpha(color.$primary, 40%)};
 
     @include normalize.input;
     @include typography.subtitle1("--rui-comp-text-field-input-text");
+
     // Baseline: widely available since January 2020.
     caret-color: color.$primary;
 

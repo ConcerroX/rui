@@ -4,9 +4,8 @@
     "exclude": ["dist"],
     "compilerOptions": {
         "paths": {
-            "rui/components": ["../../packages/rui/src/components/index.ts"],
-            "rui/components/*": ["../../packages/rui/src/components/*"],
-            "rui/styles": ["../../packages/rui/src/styles.ts"]
+            "@ripple-design/rui": ["../../packages/rui/src/index.ts"],
+            "@ripple-design/rui/*": ["../../packages/rui/src/*"]
         },
         "plugins": [
             {

@@ -5,8 +5,15 @@
     --rui-sys-typo-subtitle1-weight: 400;
     --rui-sys-typo-subtitle1-font-family: var(--rui-sys-typo-font-family);
     --rui-sys-typo-subtitle1-line-height: 1.5rem; // 24 / 16
-    --rui-sys-typo-subtitle1-letter-spacing: 0.009375rem; // 0.15 / 16
+    --rui-sys-typo-subtitle1-letter-spacing: 0.009375px; // 0.15 / 16
     --rui-sys-typo-subtitle1-text-transform: none;
+
+    --rui-sys-typo-caption-size: 0.75rem;
+    --rui-sys-typo-caption-weight: 400;
+    --rui-sys-typo-caption-font-family: var(--rui-sys-typo-font-family);
+    --rui-sys-typo-caption-line-height: 1.5rem;
+    --rui-sys-typo-caption-letter-spacing: 0.03333333333px; // 0.4 / 12
+    --rui-sys-typo-caption-text-transform: none;
 }
 
 @mixin subtitle1($name: null) {
@@ -27,6 +34,28 @@
     }
 }
 
+@mixin caption($name: null) {
+    @if $name {
+        font-size: var(#{$name}-size, var(--rui-sys-typo-caption-size));
+        font-weight: var(#{$name}-weight, var(--rui-sys-typo-caption-weight));
+        font-family: var(#{$name}-font-family, var(--rui-sys-typo-caption-font-family)), system-ui;
+        line-height: var(#{$name}-line-height, var(--rui-sys-typo-caption-line-height));
+        letter-spacing: var(#{$name}-letter-spacing, var(--rui-sys-typo-caption-letter-spacing));
+        text-transform: var(#{$name}-text-transform, var(--rui-sys-typo-caption-text-transform));
+    } @else {
+        font-size: var(--rui-sys-typo-caption-size);
+        font-weight: var(--rui-sys-typo-caption-weight);
+        font-family: var(--rui-sys-typo-caption-font-family), system-ui;
+        line-height: var(--rui-sys-typo-caption-line-height);
+        letter-spacing: var(--rui-sys-typo-caption-letter-spacing);
+        text-transform: var(--rui-sys-typo-caption-text-transform);
+    }
+}
+
 .rui-text--subtitle1 {
     @include subtitle1;
+}
+
+.rui-text--caption {
+    @include caption;
 }

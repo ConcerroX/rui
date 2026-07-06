@@ -1,5 +1,10 @@
 :root {
     --rui-sys-color-primary: #6200ee;
+    --rui-sys-on-surface-medium: rgba(0, 0, 0, 0.54);
+    --rui-sys-on-surface-high: rgba(0, 0, 0, 0.87);
 }
 
 $primary: var(--rui-sys-color-primary);
+
+$on-surface-medium: var(--rui-sys-on-surface-medium);
+$on-surface-high: var(--rui-sys-on-surface-high);

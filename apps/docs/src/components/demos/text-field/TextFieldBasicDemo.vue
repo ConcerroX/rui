@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { RTextField } from "@ripple-design/rui/components"
 import { ref } from "vue"
-import { RTextField } from "rui/components"
 
 const model = ref("")
 </script>
@@ -9,7 +9,7 @@ const model = ref("")
     <form>
         <label>
             Text field demo
-            <RTextField v-model="model" />
+            <RTextField v-model="model" label="Text field" />
         </label>
         <p>Value: {{ model }}</p>
     </form>

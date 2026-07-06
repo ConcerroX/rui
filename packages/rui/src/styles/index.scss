@@ -1,5 +1,5 @@
-@forward "color";
-@forward "typography";
+@forward "color" as color-*;
+@forward "typography" as typo-*;
 
 :root {
 }

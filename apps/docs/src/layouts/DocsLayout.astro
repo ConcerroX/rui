@@ -119,13 +119,13 @@ const tabs = getTabsForDoc(allDocs, locale, entry.data.docSlug)
         <article class="docs-content">
             <header>
                 <h1>{entry.data.title}</h1>
-                <p>Current reading mode: {mode}</p>
-                <nav class="docs-mode" aria-label="Reading mode">
-                    <ul>
-                        <li><a href={getModeUrl(Astro.url, "design")} aria-current={mode === "design" ? "true" : undefined}>Design</a></li>
-                        <li><a href={getModeUrl(Astro.url, "develop")} aria-current={mode === "develop" ? "true" : undefined}>Develop</a></li>
-                    </ul>
-                </nav>
+                <!--<p>Current reading mode: {mode}</p>-->
+                <!--<nav class="docs-mode" aria-label="Reading mode">-->
+                <!--    <ul>-->
+                <!--        <li><a href={getModeUrl(Astro.url, "design")} aria-current={mode === "design" ? "true" : undefined}>Design</a></li>-->
+                <!--        <li><a href={getModeUrl(Astro.url, "develop")} aria-current={mode === "develop" ? "true" : undefined}>Develop</a></li>-->
+                <!--    </ul>-->
+                <!--</nav>-->
                 <nav class="docs-tabs" aria-label="Page sections">
                     <ul>
                         {tabs.map((tabEntry) => (

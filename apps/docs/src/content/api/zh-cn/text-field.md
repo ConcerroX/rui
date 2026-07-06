@@ -10,7 +10,7 @@ developOrder: 20
 ## 导入
 
 ```ts
-import { RTextField } from "rui/components"
+import { RTextField } from "@ripple-design/rui/components"
 ```
 
 ## 说明
