@@ -21,7 +21,13 @@ const showPlaceholder = computed(() => !props.label || isFloating.value)
 </script>
 
 <template>
-    <RTextFieldShell :label="props.label" :focused="isFocused" :floating="isFloating" @focus-state-change="isFocused = $event">
+    <RTextFieldShell
+        :label="props.label"
+        :focused="isFocused"
+        :floating="isFloating"
+        :has-value="hasValue"
+        @focus-state-change="isFocused = $event"
+    >
         <RTextFieldInput
             v-model="model"
             :placeholder="props.placeholder"

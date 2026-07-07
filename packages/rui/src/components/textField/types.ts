@@ -10,12 +10,14 @@ export type RTextFieldInputProps = RTextInputProps & {
 export type RFloatingLabelProps = {
     focused: boolean
     floating: boolean
+    hasValue: boolean
     label?: string
 }
 
 export type RNotchedOutlineProps = {
     focused: boolean
     floating: boolean
+    hasValue: boolean
     hovered: boolean
     label?: string
 }
@@ -23,6 +25,7 @@ export type RNotchedOutlineProps = {
 export type RTextFieldShellProps = {
     focused: boolean
     floating: boolean
+    hasValue: boolean
     label?: string
 }
 

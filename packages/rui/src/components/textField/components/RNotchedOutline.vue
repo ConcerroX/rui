@@ -35,7 +35,13 @@ onMounted(() => {
             <span class="rui-notched-outline__label-space__shadow-label" ref="shadowLabelRef">{{ label }}</span>
         </span>
         <span class="rui-notched-outline__trailing" />
-        <RFloatingLabel class="rui-notched-outline__label" :focused="focused" :floating="floating" :label="label" />
+        <RFloatingLabel
+            class="rui-notched-outline__label"
+            :focused="focused"
+            :floating="floating"
+            :has-value="hasValue"
+            :label="label"
+        />
     </span>
 </template>
 

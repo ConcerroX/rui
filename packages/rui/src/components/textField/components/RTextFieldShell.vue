@@ -23,7 +23,13 @@ defineProps<RTextFieldShellProps>()
         @mouseleave="isHovered = false"
     >
         <slot />
-        <RNotchedOutline :focused="focused" :floating="floating" :hovered="isHovered && !focused" :label="label" />
+        <RNotchedOutline
+            :focused="focused"
+            :floating="floating"
+            :has-value="hasValue"
+            :hovered="isHovered && !focused"
+            :label="label"
+        />
     </label>
 </template>
 
