@@ -1,6 +1,6 @@
 {
     "name": "@ripple-design/rui",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Modular and customizable Ripple Design UI components for Vue 3",
     "files": [
         "dist"
