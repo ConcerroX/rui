@@ -1,6 +1,6 @@
 {
     "name": "@ripple-design/rui",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Modular and customizable Ripple Design UI components for Vue 3",
     "files": [
         "dist"
@@ -10,6 +10,14 @@
     "main": "./dist/index.js",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
+    "typesVersions": {
+        "*": {
+            "*": [
+                "./*",
+                "./dist/*"
+            ]
+        }
+    },
     "exports": {
         ".": {
             "types": "./dist/index.d.ts",
