@@ -11,8 +11,8 @@
     "dependencies": {
         "@astrojs/mdx": "^7.0.2",
         "@astrojs/vue": "^7.0.1",
+        "@ripple-design/rui": "workspace:*",
         "astro": "^7.0.6",
-        "rui": "workspace:*",
         "vue": "catalog:"
     }
 }

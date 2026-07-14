@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { RFloatingLabelProps } from "@/components"
+import type { RFloatingLabelProps } from "../types"
 
 defineProps<RFloatingLabelProps>()
 </script>

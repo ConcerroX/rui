@@ -1,8 +1,7 @@
+import vue from "@vitejs/plugin-vue"
 import { readdirSync } from "node:fs"
 import path from "node:path"
 import { fileURLToPath, URL } from "node:url"
-
-import vue from "@vitejs/plugin-vue"
 import { defineConfig } from "vite"
 import dts from "vite-plugin-dts"
 
@@ -12,8 +11,7 @@ const componentsRoot = path.join(rootDir, "src/components")
 function getPublicVueEntries() {
     const entries: Record<string, string> = {}
 
-    const componentDirs = readdirSync(componentsRoot, { withFileTypes: true })
-        .filter((dirent) => dirent.isDirectory())
+    const componentDirs = readdirSync(componentsRoot, { withFileTypes: true }).filter((dirent) => dirent.isDirectory())
 
     for (const dirent of componentDirs) {
         const groupDir = path.join(componentsRoot, dirent.name)
@@ -42,9 +40,10 @@ export default defineConfig({
     plugins: [
         vue(),
         dts({
-            entryRoot: "src",
-            outDirs: ["./dist/types"],
+            copyDtsFiles: true,
+            outDir: "dist/types",
             tsconfigPath: "./tsconfig.json",
+            entryRoot: "src",
         }),
     ],
     resolve: {
@@ -62,10 +61,22 @@ export default defineConfig({
                 ...publicVueEntries,
             },
             formats: ["es"],
-            fileName: (_format, entryName) => `es/${entryName}.js`,
+            fileName: (_format, entryName) => `es/${entryName}.js`.replace("src/", ""),
         },
         rolldownOptions: {
             external: ["vue"],
+            output: {
+                assetFileNames: (info: any) => {
+                    const srcName = info.originalFileNames[0]
+                    if (srcName) {
+                        if (srcName.includes("src/")) {
+                            const fileName = srcName.replace("src/", "")
+                            return `es/${fileName}`
+                        }
+                    }
+                    return info.name
+                },
+            },
         },
     },
 })

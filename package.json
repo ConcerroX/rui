@@ -12,6 +12,9 @@
         "lint:rui": "pnpm --filter rui lint",
         "lint:rui:fix": "pnpm --filter rui lint:fix"
     },
+    "dependencies": {
+        "vue": "catalog:"
+    },
     "devDependencies": {
         "@tsconfig/node24": "^24.0.4",
         "@types/node": "^24.13.2",
@@ -19,9 +22,6 @@
         "oxfmt": "^0.54.0",
         "oxlint": "~1.69.0",
         "typescript": "~6.0.0",
-        "vue-tsc": "^3.3.5"
-    },
-    "dependencies": {
-        "vue": "catalog:"
+        "vue-tsc": "^2.2.10"
     }
 }
