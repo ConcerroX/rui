@@ -14,6 +14,21 @@ const props = defineProps<RNumberFieldProps>()
 const model = defineModel<number | null>()
 const inputValue = ref(model.value == null ? "" : String(model.value))
 const isFocused = ref(false)
+const allowNegative = computed(() => props.min == null || props.min < 0)
+
+function clampValue(value: number) {
+    let next = value
+
+    if (props.min != null) {
+        next = Math.max(next, props.min)
+    }
+
+    if (props.max != null) {
+        next = Math.min(next, props.max)
+    }
+
+    return next
+}
 
 watch(
     () => model.value,
@@ -25,19 +40,28 @@ watch(
 )
 
 watch(inputValue, (value) => {
-    if (value === "") {
+    if (
+        value === "" ||
+        (allowNegative.value && value === "-") ||
+        (props.inputType === "decimal" && value === ".") ||
+        (props.inputType === "decimal" && allowNegative.value && value === "-.")
+    ) {
         model.value = null
         return
     }
 
     if (props.inputType === "decimal") {
-        if (/^(?:\d+|\d*\.\d+)$/.test(value)) {
-            model.value = Number(value)
+        const decimalPattern = allowNegative.value ? /^-?(?:\d+|\d*\.\d+)$/ : /^(?:\d+|\d*\.\d+)$/
+        if (decimalPattern.test(value)) {
+            model.value = clampValue(Number(value))
         }
         return
     }
 
-    model.value = Number(value)
+    const numericPattern = allowNegative.value ? /^-?\d+$/ : /^\d+$/
+    if (numericPattern.test(value)) {
+        model.value = clampValue(Number(value))
+    }
 })
 
 watch(isFocused, (focused) => {
@@ -63,6 +87,7 @@ const showPlaceholder = computed(() => !props.label || isFloating.value)
             v-model="inputValue"
             :focused="isFocused"
             :input-type="inputType ?? 'numeric'"
+            :allow-negative="allowNegative"
             :placeholder="placeholder"
             :show-placeholder="showPlaceholder"
         />

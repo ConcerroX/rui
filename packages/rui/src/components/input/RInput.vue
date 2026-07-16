@@ -7,6 +7,7 @@ const props = withDefaults(defineProps<RInputProps>(), {
     textArea: false,
     showPlaceholder: true,
     inputType: "text",
+    allowNegative: true,
 })
 
 const model = defineModel<string>()
@@ -18,21 +19,30 @@ const inputMode = computed(() => {
 })
 
 const pattern = computed(() => {
-    if (props.inputType === "numeric") return "[0-9]*"
-    if (props.inputType === "decimal") return "[0-9]*[.]?[0-9]*"
+    const sign = props.allowNegative ? "-?" : ""
+
+    if (props.inputType === "numeric") return `${sign}[0-9]*`
+    if (props.inputType === "decimal") return `${sign}[0-9]*[.]?[0-9]*`
     return undefined
 })
 
 function sanitizeValue(rawValue: string) {
     if (props.inputType === "numeric") {
-        return rawValue.replace(/\D+/g, "")
+        const isNegative = props.allowNegative && rawValue.startsWith("-")
+        const digits = rawValue.replace(/\D+/g, "")
+        return `${isNegative ? "-" : ""}${digits}`
     }
 
     if (props.inputType === "decimal") {
         let normalized = ""
         let hasDot = false
 
-        for (const char of rawValue) {
+        for (const [index, char] of [...rawValue].entries()) {
+            if (char === "-" && index === 0 && props.allowNegative) {
+                normalized += char
+                continue
+            }
+
             if (/\d/.test(char)) {
                 normalized += char
                 continue

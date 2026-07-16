@@ -6,4 +6,8 @@ export type RNumberFieldProps = {
     placeholder?: string
     /** Controls whether the field accepts integer or decimal numeric input. */
     inputType?: "numeric" | "decimal"
+    /** Sets the minimum allowed numeric value. */
+    min?: number
+    /** Sets the maximum allowed numeric value. */
+    max?: number
 }

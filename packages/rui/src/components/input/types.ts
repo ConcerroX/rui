@@ -8,6 +8,8 @@ export type RInputProps = {
     showPlaceholder?: boolean
     /** Controls how the input value should be interpreted and sanitized. */
     inputType?: "text" | "numeric" | "decimal"
+    /** Controls whether negative values are allowed for numeric input types. */
+    allowNegative?: boolean
 }
 
 /** Props for the internal text field input surface. */

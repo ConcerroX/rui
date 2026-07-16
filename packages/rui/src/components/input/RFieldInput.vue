@@ -19,6 +19,7 @@ const model = defineModel<string>()
         }"
         v-model="model"
         :input-type="inputType"
+        :allow-negative="allowNegative"
         :placeholder="placeholder"
         :show-placeholder="showPlaceholder"
         :text-area="textArea"
