@@ -46,7 +46,7 @@ export function themeToCSSVars(theme: RTheme) {
 export function applyTheme(theme: RTheme, target: HTMLElement = document.documentElement) {
     const vars = themeToCSSVars(theme)
 
-    console.log("[RUI] Applying theme:", theme, target)
+    console.log("[RUI] Applying theme:", theme, target, vars)
     for (const [name, value] of Object.entries(vars)) {
         target.style.setProperty(name, value)
     }

@@ -14,9 +14,9 @@
 
     --rui-sys-color-surface: #ffffff;
     --rui-sys-color-on-surface: #000000;
-    --rui-sys-color-on-surface-high: rgba(from var(--rui-sys-color-on-surface) / 0.87);
-    --rui-sys-color-on-surface-medium: rgba(from var(--rui-sys-color-on-surface) / 0.54);
-    --rui-sys-color-on-surface-low: rgba(from var(--rui-sys-color-on-surface) / 0.38);
+    --rui-sys-color-on-surface-high: rgba(from var(--rui-sys-color-on-surface) r g b / 0.87);
+    --rui-sys-color-on-surface-medium: rgba(from var(--rui-sys-color-on-surface) r g b / 0.54);
+    --rui-sys-color-on-surface-low: rgba(from var(--rui-sys-color-on-surface) r g b / 0.38);
 
     --rui-sys-color-error: #b00020;
     --rui-sys-color-on-error: #ffffff;
