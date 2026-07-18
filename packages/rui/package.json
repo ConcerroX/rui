@@ -48,5 +48,8 @@
     "peerDependencies": {
         "vue": "^3.5.0"
     },
-    "sass": "./rui.scss"
+    "sass": "./rui.scss",
+    "dependencies": {
+        "@ripple-design/icons": "^1.0.3"
+    }
 }

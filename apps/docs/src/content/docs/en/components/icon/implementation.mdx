@@ -1,0 +1,19 @@
+---
+title: Icon
+docSlug: components/icon
+tab: implementation
+locale: en
+designOrder: 50
+developOrder: 50
+api: /en/api/icon
+---
+
+import DemoBlock from "@docs/components/docs/DemoBlock.astro"
+import IconBasicDemo from "@docs/components/demos/icon/IconBasicDemo.vue"
+import iconBasicDemoSource from "@docs/components/demos/icon/IconBasicDemo.vue?raw"
+
+## Basic usage
+
+<DemoBlock title="Basic icon" code={iconBasicDemoSource} language="vue">
+    <IconBasicDemo client:load />
+</DemoBlock>
