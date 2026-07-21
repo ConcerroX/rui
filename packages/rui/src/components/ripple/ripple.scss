@@ -1,0 +1,113 @@
+@use "../../styles/motion";
+
+:root {
+    --rui-ripple-surface-duration: 280ms;
+    --rui-ripple-expand-duration: 225ms;
+    --rui-ripple-enter-opacity-duration: 75ms;
+    --rui-ripple-exit-opacity-duration: 150ms;
+    --rui-ripple-hover-opacity: 0.04;
+    --rui-ripple-focus-opacity: 0.08;
+    --rui-ripple-wave-opacity: 0.08;
+}
+
+.rui-ripple-surface {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: block;
+    overflow: hidden;
+    border-radius: inherit;
+    pointer-events: none;
+    color: inherit;
+}
+
+.rui-ripple-surface::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--rui-ripple-color, currentColor);
+    opacity: 0;
+    transition: opacity var(--rui-ripple-surface-duration) motion.$easing-standard;
+}
+
+.rui-ripple-surface.is-hovered:not(.rui-ripple-surface--unbounded):not(.is-disabled)::before,
+:focus-visible > .rui-ripple-surface:not(.rui-ripple-surface--unbounded):not(.is-disabled)::before {
+    opacity: var(--rui-ripple-hover-opacity);
+}
+
+:focus-visible > .rui-ripple-surface:not(.rui-ripple-surface--unbounded):not(.is-disabled)::before {
+    opacity: var(--rui-ripple-focus-opacity);
+}
+
+.rui-ripple-surface--unbounded {
+    overflow: visible;
+}
+
+.rui-ripple-unbounded {
+    position: absolute;
+    border-radius: 50%;
+    background-color: var(--rui-ripple-color, currentColor);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--rui-ripple-surface-duration) motion.$easing-standard;
+}
+
+.rui-ripple-surface--unbounded.is-hovered:not(.is-disabled) .rui-ripple-unbounded {
+    opacity: var(--rui-ripple-hover-opacity);
+}
+
+:focus-visible > .rui-ripple-surface.rui-ripple-surface--unbounded:not(.is-disabled) .rui-ripple-unbounded {
+    opacity: var(--rui-ripple-focus-opacity);
+}
+
+.rui-ripple-wave {
+    position: absolute;
+    z-index: 1;
+    display: block;
+    border-radius: 50%;
+    background-color: var(--rui-ripple-color, currentColor);
+    transform: translate3d(0, 0, 0) scale(0.4);
+    opacity: 0;
+    pointer-events: none;
+    animation:
+        var(--rui-ripple-expand-duration) ease 0s 1 normal forwards running rui-ripple-radius-in,
+        var(--rui-ripple-enter-opacity-duration) ease 0s 1 normal forwards running rui-ripple-opacity-in;
+}
+
+.rui-ripple-wave.is-out {
+    transform: translate3d(var(--rui-ripple-transition-x, 0), var(--rui-ripple-transition-y, 0), 0) scale(1);
+    animation: var(--rui-ripple-exit-opacity-duration) ease 0s 1 normal none running rui-ripple-opacity-out;
+}
+
+@keyframes rui-ripple-radius-in {
+    from {
+        transform: translate3d(0, 0, 0) scale(0.4);
+        animation-timing-function: motion.$easing-standard;
+    }
+
+    to {
+        transform: translate3d(var(--rui-ripple-transition-x, 0), var(--rui-ripple-transition-y, 0), 0) scale(1);
+    }
+}
+
+@keyframes rui-ripple-opacity-in {
+    from {
+        opacity: 0;
+        animation-timing-function: motion.$easing-linear;
+    }
+
+    to {
+        opacity: var(--rui-ripple-wave-opacity);
+    }
+}
+
+@keyframes rui-ripple-opacity-out {
+    from {
+        animation-timing-function: motion.$easing-linear;
+        opacity: var(--rui-ripple-wave-opacity);
+    }
+
+    to {
+        opacity: 0;
+    }
+}

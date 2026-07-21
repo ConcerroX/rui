@@ -9,7 +9,7 @@ const style = computed(() => ({
     "--rui-icon-size": typeof props.size === "number" ? `${props.size}px` : props.size,
 }))
 
-const isDecorative = computed(() => props.decorative === true || !props.label)
+const isDecorative = computed(() => props.decorative || !props.label)
 const role = computed(() => (isDecorative.value ? undefined : "img"))
 const ariaLabel = computed(() => (isDecorative.value ? undefined : props.label))
 </script>

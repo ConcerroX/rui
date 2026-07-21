@@ -1,0 +1,21 @@
+---
+title: Ripple
+docSlug: components/ripple
+tab: implementation
+locale: en
+designOrder: 60
+developOrder: 60
+api: /en/api/ripple
+---
+
+import DemoBlock from "@docs/components/docs/DemoBlock.astro"
+import RippleBasicDemo from "@docs/components/demos/ripple/RippleBasicDemo.vue"
+import rippleBasicDemoSource from "@docs/components/demos/ripple/RippleBasicDemo.vue?raw"
+
+## Basic usage
+
+The demo below includes an explicit bounded vs. unbounded icon comparison so the overflow behavior is easy to inspect.
+
+<DemoBlock title="Ripple directive" code={rippleBasicDemoSource} language="vue">
+    <RippleBasicDemo client:load />
+</DemoBlock>

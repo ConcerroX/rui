@@ -12,7 +12,7 @@ import { RIcon, RRow } from "@ripple-design/rui"
         <RIcon :icon="RIAccountBalanceFilled" size="2rem" />
 
         <span>
-            <RIcon :icon="RIAccountBalanceFilled" />
+            <RIcon :icon="RIAccountBalanceFilled" decorative />
             Decorative inline icon
         </span>
 
