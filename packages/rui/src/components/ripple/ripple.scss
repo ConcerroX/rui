@@ -66,7 +66,7 @@
     display: block;
     border-radius: 50%;
     background-color: var(--rui-ripple-color, currentColor);
-    transform: translate3d(0, 0, 0) scale(0.4);
+    transform: translate3d(0, 0, 0) scale(0);
     opacity: 0;
     pointer-events: none;
     animation:
@@ -81,7 +81,7 @@
 
 @keyframes rui-ripple-radius-in {
     from {
-        transform: translate3d(0, 0, 0) scale(0.4);
+        transform: translate3d(0, 0, 0) scale(0);
         animation-timing-function: motion.$easing-standard;
     }
 

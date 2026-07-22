@@ -120,10 +120,7 @@ export function createRippleController(host: HTMLElement, initialOptions: Normal
         }
 
         const wave = activePointerWaves.get(event.pointerId)
-        if (!wave) {
-            return
-        }
-
+        if (!wave) return
         wave.release()
         activePointerWaves.delete(event.pointerId)
 
@@ -133,22 +130,15 @@ export function createRippleController(host: HTMLElement, initialOptions: Normal
     }
 
     const onKeyDown = (event: KeyboardEvent) => {
-        if (destroyed || isDisabled(host, options) || event.repeat || activeKeyboardWave) {
-            return
-        }
-
-        if (!isActivationKey(event.key)) {
-            return
-        }
+        if (destroyed || isDisabled(host, options) || event.repeat || activeKeyboardWave) return
+        if (!isActivationKey(event.key)) return
 
         activeKeyboardKey = event.key
         activeKeyboardWave = createWave(surface, options, { centered: true })
     }
 
     const onKeyUp = (event: KeyboardEvent) => {
-        if (!activeKeyboardWave || event.key !== activeKeyboardKey) {
-            return
-        }
+        if (!activeKeyboardWave || event.key !== activeKeyboardKey) return
 
         activeKeyboardWave.release()
         activeKeyboardWave = null
