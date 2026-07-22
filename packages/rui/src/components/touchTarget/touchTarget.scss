@@ -1,0 +1,49 @@
+@use "sass:math";
+
+:root {
+    --rui-touch-target-size: 48px;
+}
+
+.rui-touch-target {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--rui-touch-target-size);
+    height: var(--rui-touch-target-size);
+    transform: translate(-50%, -50%);
+}
+
+.rui-touch-target--vertical {
+    left: 0;
+    right: 0;
+    width: auto;
+    transform: translateY(-50%);
+}
+
+.rui-touch-target-wrapper--active {
+    display: inline-flex;
+}
+
+@mixin margin-y($component-height, $target-height: 48px) {
+    $margin: math.div($target-height - $component-height, 2);
+
+    @if $margin > 0 {
+        margin-top: $margin;
+        margin-bottom: $margin;
+    }
+}
+
+@mixin margin-xy($component-height, $component-width, $target-height: 48px, $target-width: 48px) {
+    $margin-y: math.div($target-height - $component-height, 2);
+    $margin-x: math.div($target-width - $component-width, 2);
+
+    @if $margin-y > 0 {
+        margin-top: $margin-y;
+        margin-bottom: $margin-y;
+    }
+
+    @if $margin-x > 0 {
+        margin-left: $margin-x;
+        margin-right: $margin-x;
+    }
+}

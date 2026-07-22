@@ -7,6 +7,8 @@
         "paths": {
             "@docs/*": ["./src/*"],
             "@ripple-design/rui": ["../../packages/rui/src/index.ts"],
+            "@ripple-design/rui/rui": ["../../packages/rui/rui.scss"],
+            "@ripple-design/rui/rui.scss": ["../../packages/rui/rui.scss"],
             "@ripple-design/rui/*": ["../../packages/rui/src/*"]
         },
         "plugins": [

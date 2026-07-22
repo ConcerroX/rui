@@ -2,7 +2,8 @@
 @forward "typography" as typo-*;
 @forward "motion" as motion-*;
 @forward "density" as density-*;
-@use "../components/ripple/ripple";
+@use "../foundations/ripple/ripple";
+@use "../foundations/touchTarget/touchTarget";
 
 :root {
 }

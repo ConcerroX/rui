@@ -43,8 +43,8 @@ defineProps<RFieldShellProps>()
     --rui-text-field-outlined-bottom-left-radius: 4px;
     --rui-text-field-outlined-bottom-right-radius: 4px;
     --rui-text-field-content-padding-inline: 16px;
-    --rui-text-field-density: -2;
-    --rui-text-field-content-padding-vertical: 12px;
+    --rui-text-field-density: #{density.$scale};
+    --rui-text-field-content-padding-vertical: calc(16px + var(--rui-text-field-density) * 2px);
 
     position: relative;
     display: inline-flex;

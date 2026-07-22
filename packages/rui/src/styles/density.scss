@@ -1,6 +1,10 @@
+@forward "../foundations/touchTarget/touchTarget";
+
 :root {
     --rui-sys-density-scale: 0;
 }
+
+$scale: var(--rui-sys-density-scale);
 
 @function withDecrement($original, $density) {
     @return calc($original + 4px * var($density, var(--rui-sys-density-scale)));
