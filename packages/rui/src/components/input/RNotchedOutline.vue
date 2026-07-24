@@ -48,6 +48,7 @@ useResizeObserver(shadowLabelRef, (entry) => {
 
 <style scoped lang="scss">
 @use "@/styles/color";
+@use "@/styles/shape";
 @use "@/styles/typography";
 
 .rui-notched-outline {
@@ -70,9 +71,13 @@ useResizeObserver(shadowLabelRef, (entry) => {
 
     &__leading {
         width: 12px;
-        // Baseline: widely available since September 2021.
-        border-start-start-radius: var(--rui-text-field-outlined-top-left-radius);
-        border-end-start-radius: var(--rui-text-field-outlined-bottom-left-radius);
+        @include shape.apply(
+            var(--rui-text-field-shape-family),
+            var(--rui-text-field-shape-start-start),
+            0,
+            0,
+            var(--rui-text-field-shape-end-start)
+        );
         border-inline-start-style: solid;
         border-top-style: solid;
         border-bottom-style: solid;
@@ -108,9 +113,13 @@ useResizeObserver(shadowLabelRef, (entry) => {
 
     &__trailing {
         flex-grow: 1;
-        // Baseline: widely available since September 2021.
-        border-start-end-radius: var(--rui-text-field-outlined-top-right-radius);
-        border-end-end-radius: var(--rui-text-field-outlined-bottom-right-radius);
+        @include shape.apply(
+            var(--rui-text-field-shape-family),
+            0,
+            var(--rui-text-field-shape-start-end),
+            var(--rui-text-field-shape-end-end),
+            0
+        );
         border-inline-end-style: solid;
         border-top-style: solid;
         border-bottom-style: solid;

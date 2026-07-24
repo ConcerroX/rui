@@ -7,6 +7,9 @@ export { default as RRow } from "./stack/RRow.vue"
 export { default as RColumn } from "./stack/RColumn.vue"
 export type * from "./stack/types"
 
+export { default as RSurface } from "./surface/RSurface.vue"
+export type * from "./surface/types"
+
 export { default as RIcon } from "./icon/RIcon.vue"
 export type * from "./icon/types"
 

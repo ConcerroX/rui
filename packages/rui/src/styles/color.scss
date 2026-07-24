@@ -17,6 +17,7 @@
     --rui-sys-color-on-surface-high: rgba(from var(--rui-sys-color-on-surface) r g b / 0.87);
     --rui-sys-color-on-surface-medium: rgba(from var(--rui-sys-color-on-surface) r g b / 0.54);
     --rui-sys-color-on-surface-low: rgba(from var(--rui-sys-color-on-surface) r g b / 0.38);
+    --rui-sys-color-on-surface-outline: rgba(from var(--rui-sys-color-on-surface) r g b / 0.12);
 
     --rui-sys-color-error: #b00020;
     --rui-sys-color-on-error: #ffffff;
@@ -38,6 +39,7 @@ $on-surface: var(--rui-sys-color-on-surface);
 $on-surface-high: var(--rui-sys-color-on-surface-high);
 $on-surface-medium: var(--rui-sys-color-on-surface-medium);
 $on-surface-low: var(--rui-sys-color-on-surface-low);
+$on-surface-outline: var(--rui-sys-color-on-surface-outline);
 
 $error: var(--rui-sys-color-error);
 $on-error: var(--rui-sys-color-on-error);

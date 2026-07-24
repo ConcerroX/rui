@@ -1,0 +1,85 @@
+@use "sass:list";
+@use "sass:meta";
+
+@function normalize-corners($values) {
+    @if meta.type-of($values) != "list" {
+        @return ($values, $values, $values, $values);
+    }
+
+    $length: list.length($values);
+
+    @if $length == 1 {
+        $value: list.nth($values, 1);
+        @return ($value, $value, $value, $value);
+    }
+
+    @if $length == 2 {
+        $first: list.nth($values, 1);
+        $second: list.nth($values, 2);
+        @return ($first, $second, $first, $second);
+    }
+
+    @if $length == 3 {
+        $first: list.nth($values, 1);
+        $second: list.nth($values, 2);
+        $third: list.nth($values, 3);
+        @return ($first, $second, $third, $second);
+    }
+
+    @if $length == 4 {
+        @return $values;
+    }
+
+    @error "Shape corners must contain between 1 and 4 values.";
+}
+
+@function resolve-family($family) {
+    @if $family == rounded or $family == round {
+        @return round;
+    }
+
+    @if $family == cut or $family == bevel {
+        @return bevel;
+    }
+
+    @error "Unsupported shape family `#{$family}`. Expected `rounded` or `cut`.";
+}
+
+@function category-var($category, $suffix) {
+    @return var(--rui-sys-shape-#{$category}-#{$suffix});
+}
+
+@mixin define-category($category, $family, $corners) {
+    $resolved: normalize-corners($corners);
+
+    --rui-sys-shape-#{$category}-family: #{resolve-family($family)};
+    --rui-sys-shape-#{$category}-start-start: #{list.nth($resolved, 1)};
+    --rui-sys-shape-#{$category}-start-end: #{list.nth($resolved, 2)};
+    --rui-sys-shape-#{$category}-end-end: #{list.nth($resolved, 3)};
+    --rui-sys-shape-#{$category}-end-start: #{list.nth($resolved, 4)};
+}
+
+@mixin apply($family, $start-start, $start-end, $end-end, $end-start) {
+    border-start-start-radius: $start-start;
+    border-start-end-radius: $start-end;
+    border-end-end-radius: $end-end;
+    border-end-start-radius: $end-start;
+    corner-shape: $family;
+}
+
+@mixin apply-category($category) {
+    @include apply(
+        category-var($category, family),
+        category-var($category, start-start),
+        category-var($category, start-end),
+        category-var($category, end-end),
+        category-var($category, end-start)
+    );
+}
+
+:root {
+    @include define-category(small, rounded, 4px);
+    @include define-category(medium, rounded, 4px);
+    @include define-category(large, rounded, 0px);
+    @include define-category(full, rounded, 9999px);
+}

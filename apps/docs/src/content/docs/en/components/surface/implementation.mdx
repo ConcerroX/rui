@@ -1,0 +1,19 @@
+---
+title: Surface
+docSlug: components/surface
+tab: implementation
+locale: en
+designOrder: 45
+developOrder: 45
+api: /en/api/surface
+---
+
+import DemoBlock from "@docs/components/docs/DemoBlock.astro"
+import SurfaceBasicDemo from "@docs/components/demos/surface/SurfaceBasicDemo.vue"
+import surfaceBasicDemoSource from "@docs/components/demos/surface/SurfaceBasicDemo.vue?raw"
+
+## Basic usage
+
+<DemoBlock title="Surface variants" code={surfaceBasicDemoSource} language="vue">
+    <SurfaceBasicDemo client:load />
+</DemoBlock>

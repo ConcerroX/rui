@@ -1,0 +1,19 @@
+---
+title: Shape
+docSlug: components/shape
+tab: implementation
+locale: en
+designOrder: 35
+developOrder: 35
+api: /en/api/shape
+---
+
+import DemoBlock from "@docs/components/docs/DemoBlock.astro"
+import ShapeBasicDemo from "@docs/components/demos/surface/ShapeBasicDemo.vue"
+import shapeBasicDemoSource from "@docs/components/demos/surface/ShapeBasicDemo.vue?raw"
+
+## Surface shape examples
+
+<DemoBlock title="Rounded, cut, and asymmetric surface shapes" code={shapeBasicDemoSource} language="vue">
+    <ShapeBasicDemo client:load />
+</DemoBlock>

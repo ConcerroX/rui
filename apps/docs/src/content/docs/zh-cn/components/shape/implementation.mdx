@@ -1,0 +1,19 @@
+---
+title: Shape
+docSlug: components/shape
+tab: implementation
+locale: zh-cn
+designOrder: 35
+developOrder: 35
+api: /zh-cn/api/shape
+---
+
+import DemoBlock from "@docs/components/docs/DemoBlock.astro"
+import ShapeBasicDemo from "@docs/components/demos/surface/ShapeBasicDemo.vue"
+import shapeBasicDemoSource from "@docs/components/demos/surface/ShapeBasicDemo.vue?raw"
+
+## Surface 形状示例
+
+<DemoBlock title="圆角、切角与不对称 surface" code={shapeBasicDemoSource} language="vue">
+    <ShapeBasicDemo client:load />
+</DemoBlock>

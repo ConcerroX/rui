@@ -36,19 +36,27 @@ defineProps<RFieldShellProps>()
 
 <style scoped lang="scss">
 @use "@/styles/density";
+@use "@/styles/shape";
 
 .rui-field-shell {
-    --rui-text-field-outlined-top-left-radius: 4px;
-    --rui-text-field-outlined-top-right-radius: 4px;
-    --rui-text-field-outlined-bottom-left-radius: 4px;
-    --rui-text-field-outlined-bottom-right-radius: 4px;
+    --rui-text-field-shape-family: var(--rui-sys-shape-small-family);
+    --rui-text-field-shape-start-start: var(--rui-sys-shape-small-start-start);
+    --rui-text-field-shape-start-end: var(--rui-sys-shape-small-start-end);
+    --rui-text-field-shape-end-end: var(--rui-sys-shape-small-end-end);
+    --rui-text-field-shape-end-start: var(--rui-sys-shape-small-end-start);
     --rui-text-field-content-padding-inline: 16px;
     --rui-text-field-density: #{density.$scale};
     --rui-text-field-content-padding-vertical: calc(16px + var(--rui-text-field-density) * 2px);
 
     position: relative;
     display: inline-flex;
-    border-radius: var(--rui-text-field-outlined-top-left-radius) var(--rui-text-field-outlined-top-right-radius)
-        var(--rui-text-field-outlined-bottom-right-radius) var(--rui-text-field-outlined-bottom-left-radius);
+
+    @include shape.apply(
+        var(--rui-text-field-shape-family),
+        var(--rui-text-field-shape-start-start),
+        var(--rui-text-field-shape-start-end),
+        var(--rui-text-field-shape-end-end),
+        var(--rui-text-field-shape-end-start)
+    );
 }
 </style>
