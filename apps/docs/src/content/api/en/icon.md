@@ -19,7 +19,7 @@ import { RIcon } from "@ripple-design/rui"
 
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
-| `icon` | `string` | yes | SVG path data for the icon. |
+| `icon` | `string` | yes | Optimized SVG markup for the icon. |
 | `size` | `string \| number` | no | Controls the icon size. Numbers map to pixels, while strings pass through directly. |
 | `decorative` | `boolean` | no | Forces the icon to be decorative and hidden from assistive technology. |
 | `label` | `string` | no | Sets the accessible name announced for a non-decorative icon. |
