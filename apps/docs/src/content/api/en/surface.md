@@ -20,6 +20,7 @@ import { RSurface } from "@ripple-design/rui"
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
 | `variant` | `"elevated" \| "outlined"` | no | Controls the surface treatment. |
+| `as` | `string` | no | Chooses which HTML element the surface should render as. |
 
 Generated from `packages/rui/src/components/surface/types.ts`.
 

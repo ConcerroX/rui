@@ -1,19 +1,26 @@
 <script setup lang="ts">
-import { computed } from "vue"
+import { computed, useAttrs } from "vue"
 
 import type { RSurfaceProps } from "./types"
 
-const props = withDefaults(defineProps<RSurfaceProps>(), {
-    variant: "elevated",
+defineOptions({
+    inheritAttrs: false,
 })
 
+const props = withDefaults(defineProps<RSurfaceProps>(), {
+    variant: "elevated",
+    as: "div",
+})
+
+const attrs = useAttrs()
+const tagName = computed(() => props.as)
 const classes = computed(() => ["rui-surface", `rui-surface--${props.variant}`])
 </script>
 
 <template>
-    <div :class="classes">
+    <component :is="tagName" v-bind="attrs" :class="classes">
         <slot />
-    </div>
+    </component>
 </template>
 
 <style scoped lang="scss">
@@ -29,6 +36,8 @@ const classes = computed(() => ["rui-surface", `rui-surface--${props.variant}`])
 
     display: block;
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
     background-color: color.$surface;
     color: color.$on-surface;
     border: 1px solid transparent;

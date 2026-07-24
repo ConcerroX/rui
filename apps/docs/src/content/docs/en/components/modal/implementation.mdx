@@ -1,0 +1,19 @@
+---
+title: Modal
+docSlug: components/modal
+tab: implementation
+locale: en
+designOrder: 80
+developOrder: 80
+api: /en/api/modal
+---
+
+import DemoBlock from "@docs/components/docs/DemoBlock.astro"
+import ModalCustomSurfaceDemo from "@docs/components/demos/modal/ModalCustomSurfaceDemo.vue"
+import modalCustomSurfaceDemoSource from "@docs/components/demos/modal/ModalCustomSurfaceDemo.vue?raw"
+
+## Custom surface
+
+<DemoBlock title="Modal with custom surface" code={modalCustomSurfaceDemoSource} language="vue">
+    <ModalCustomSurfaceDemo client:load />
+</DemoBlock>

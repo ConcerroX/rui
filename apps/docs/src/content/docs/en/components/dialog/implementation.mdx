@@ -1,0 +1,35 @@
+---
+title: Dialog
+docSlug: components/dialog
+tab: implementation
+locale: en
+designOrder: 90
+developOrder: 90
+api: /en/api/dialog
+---
+
+import DemoBlock from "@docs/components/docs/DemoBlock.astro"
+import DialogBasicDemo from "@docs/components/demos/dialog/DialogBasicDemo.vue"
+import dialogBasicDemoSource from "@docs/components/demos/dialog/DialogBasicDemo.vue?raw"
+import DialogAlertDemo from "@docs/components/demos/dialog/DialogAlertDemo.vue"
+import dialogAlertDemoSource from "@docs/components/demos/dialog/DialogAlertDemo.vue?raw"
+import DialogFullscreenDemo from "@docs/components/demos/dialog/DialogFullscreenDemo.vue"
+import dialogFullscreenDemoSource from "@docs/components/demos/dialog/DialogFullscreenDemo.vue?raw"
+
+## Alert dialog
+
+<DemoBlock title="Alert dialog" code={dialogAlertDemoSource} language="vue">
+    <DialogAlertDemo client:load />
+</DemoBlock>
+
+## Standard dialog
+
+<DemoBlock title="Basic dialog" code={dialogBasicDemoSource} language="vue">
+    <DialogBasicDemo client:load />
+</DemoBlock>
+
+## Fullscreen dialog
+
+<DemoBlock title="Fullscreen dialog" code={dialogFullscreenDemoSource} language="vue">
+    <DialogFullscreenDemo client:load />
+</DemoBlock>

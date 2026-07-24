@@ -1,0 +1,19 @@
+---
+title: Modal
+docSlug: components/modal
+tab: implementation
+locale: zh-cn
+designOrder: 80
+developOrder: 80
+api: /zh-cn/api/modal
+---
+
+import DemoBlock from "@docs/components/docs/DemoBlock.astro"
+import ModalCustomSurfaceDemo from "@docs/components/demos/modal/ModalCustomSurfaceDemo.vue"
+import modalCustomSurfaceDemoSource from "@docs/components/demos/modal/ModalCustomSurfaceDemo.vue?raw"
+
+## 自定义 surface
+
+<DemoBlock title="自定义 surface 的 modal" code={modalCustomSurfaceDemoSource} language="vue">
+    <ModalCustomSurfaceDemo client:load />
+</DemoBlock>
